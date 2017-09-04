@@ -1,5 +1,5 @@
-import promisify from 'es6-promisify';
-import google from 'googleapis';
+import * as promisify from 'es6-promisify';
+import * as google from 'googleapis';
 import Schema from '../../rootSchema';
 import {graphql} from 'graphql';
 

@@ -1,5 +1,5 @@
 import {readCert} from './readCert';
-import flag from 'node-env-flag';
+import * as flag from 'node-env-flag';
 
 export const getRethinkConfig = () => {
   const config = {

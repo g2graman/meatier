@@ -4,8 +4,8 @@ import {User, UserWithAuthToken} from './userSchema';
 import {errorObj} from '../utils';
 import {GraphQLEmailType, GraphQLPasswordType} from '../types';
 import {getUserByEmail, signJwt, getAltLoginMessage} from './helpers';
-import promisify from 'es6-promisify';
-import bcrypt from 'bcrypt';
+import * as promisify from 'es6-promisify';
+import * as bcrypt from 'bcrypt';
 import {isAdminOrSelf} from '../authorization';
 
 const compare = promisify(bcrypt.compare);

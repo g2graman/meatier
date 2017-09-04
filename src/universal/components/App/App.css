@@ -1,5 +1,4 @@
-@value layout: '../../styles/layout.css';
-@value maxWidth from layout;
+@value maxWidth from '../../styles/layout.css';
 
 .app {
   height: 100vh;

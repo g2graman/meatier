@@ -1,7 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
 import AssetsPlugin from 'assets-webpack-plugin';
-import cssModulesValues from 'postcss-modules-values';
 import HappyPack from 'happypack';
 import {getDotenv} from '../src/universal/utils/dotenv';
 
@@ -60,10 +59,9 @@ export default {
     dns: 'mock',
     net: 'mock'
   },
-  postcss: [cssModulesValues],
   plugins: [
     ...prefetchPlugins,
-    new webpack.NamedModulesPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
       minChunks: Infinity
@@ -72,7 +70,7 @@ export default {
     new webpack.optimize.MinChunkSizePlugin({minChunkSize: 50000}),
     new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}, comments: /(?:)/}),
     new AssetsPlugin({path: path.join(root, 'build'), filename: 'assets.json'}),
-    new webpack.NoErrorsPlugin(),
+
     new webpack.DefinePlugin({
       '__CLIENT__': true,
       '__PRODUCTION__': true,
@@ -96,13 +94,13 @@ export default {
       {test: /\.(eot|ttf|wav|mp3)$/, loader: 'file-loader'},
       {
         test: /\.css$/,
-        loader: 'fake-style!css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]!postcss',
+        loader: 'css-loader/locals!css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]!postcss',
         include: clientInclude,
         exclude: globalCSS
       },
       {
         test: /\.css$/,
-        loader: 'fake-style!css',
+        loader: 'css-loader/locals!css',
         include: globalCSS
       },
       {

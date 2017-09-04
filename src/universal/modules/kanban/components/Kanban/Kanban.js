@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import uuid from 'node-uuid';
+import uuid from 'uuid';
 
 import Lanes from '../Lanes/Lanes.js';
 import styles from './Kanban.css';

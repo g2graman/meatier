@@ -6,9 +6,9 @@ import {errorObj} from '../utils';
 import {GraphQLNonNull, GraphQLBoolean} from 'graphql';
 import validateSecretToken from '../../../../universal/utils/validateSecretToken';
 import {isLoggedIn} from '../authorization';
-import promisify from 'es6-promisify';
-import bcrypt from 'bcrypt';
-import uuid from 'node-uuid';
+import * as promisify from 'es6-promisify';
+import * as bcrypt from 'bcrypt';
+import * as uuid from 'uuid';
 
 const compare = promisify(bcrypt.compare);
 const hash = promisify(bcrypt.hash);

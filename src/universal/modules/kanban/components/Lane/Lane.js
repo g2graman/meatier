@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import uuid from 'node-uuid';
+import uuid from 'uuid';
 import EditableContainer from '../../containers/Editable/EditableContainer.js';
 import Notes from '../Notes/Notes';
 import styles from './lane.css';

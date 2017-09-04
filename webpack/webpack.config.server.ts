@@ -1,7 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import cssModulesValues from 'postcss-modules-values';
 import HappyPack from 'happypack';
 
 const root = process.cwd();
@@ -18,7 +17,9 @@ const prefetchPlugins = prefetches.map(specifier => new webpack.PrefetchPlugin(s
 
 export default {
   context: path.join(root, 'src'),
-  entry: {prerender: 'universal/routes/index.js'},
+  entry: {
+    prerender: 'universal/routes/index.js'
+  },
   target: 'node',
   output: {
     path: path.join(root, 'build'),
@@ -28,14 +29,23 @@ export default {
     publicPath: '/static/'
   },
   // ignore anything that throws warnings & doesn't affect the view
-  externals: ['isomorphic-fetch', 'es6-promisify', 'socketcluster-client', 'joi', 'hoek', 'topo', 'isemail', 'moment'],
-  postcss: [cssModulesValues],
+  externals: [
+      'isomorphic-fetch',
+      'es6-promisify',
+      'socketcluster-client',
+      'joi',
+      'hoek',
+      'topo',
+      'isemail',
+      'moment'
+  ],
   resolve: {
     extensions: ['.js'],
     modules: [path.join(root, 'src'), 'node_modules']
   },
-  plugins: [...prefetchPlugins,
-    new webpack.NoErrorsPlugin(),
+  plugins: [
+    ...prefetchPlugins,
+
     new ExtractTextPlugin('[name].css'),
     new webpack.optimize.UglifyJsPlugin({compressor: {warnings: false}}),
     new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}),
@@ -57,13 +67,13 @@ export default {
       {test: /\.(eot|ttf|wav|mp3)$/, loader: 'file-loader'},
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('fake-style', 'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]!postcss'),
+        loader: ExtractTextPlugin.extract('css-loader/locals', 'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]!postcss'),
         include: serverInclude,
         exclude: globalCSS
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('fake-style', 'css'),
+        loader: ExtractTextPlugin.extract('css-loader/locals', 'css'),
         include: globalCSS
       },
       {

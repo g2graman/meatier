@@ -1,4 +1,4 @@
-import rethinkdbdash from 'rethinkdbdash';
+import * as rethinkdbdash from 'rethinkdbdash';
 import {getRethinkConfig} from './getRethinkConfig';
 
 const config = getRethinkConfig();

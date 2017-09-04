@@ -1,5 +1,4 @@
-@value colors: 'universal/styles/colors.css';
-@value primary from colors;
+@value primary from 'universal/styles/colors.css';
 
 .kanban {
 }

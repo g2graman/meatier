@@ -1,9 +1,9 @@
-import express from 'express';
-import webpack from 'webpack';
-import compression from 'compression';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import jwt from 'express-jwt';
+import * as express from 'express';
+import * as webpack from 'webpack';
+import * as compression from 'compression';
+import * as cors from 'cors';
+import * as bodyParser from 'body-parser';
+import * as jwt from 'express-jwt';
 
 import config from '../../webpack/webpack.config.dev';
 import createSSR from './createSSR';
